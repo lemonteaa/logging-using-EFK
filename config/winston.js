@@ -22,7 +22,7 @@ const options = {
 
 // instantiate a new Winston Logger with the settings defined above
 const logger = winston.createLogger({
-  format: combine(timestamp(), json()),
+  format: combine(timestamp({format: 'YYYY-MM-DD HH:mm:ss'}), json()),
   defaultMeta: {
     layer: "app",
   },
