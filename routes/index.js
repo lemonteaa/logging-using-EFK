@@ -13,8 +13,11 @@ router.get('/', (req, res) => {
       },
     },
   };*/
-  logger.info('Render Title page');
-  res.render('index', { title: 'Express' });
+
+  let q = req.query.q || 'none';
+
+  logger.info('Render Title page', { q: q });
+  res.render('index', { title: 'Express', question: q });
 });
 
 module.exports = router;
