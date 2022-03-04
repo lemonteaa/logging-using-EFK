@@ -14,7 +14,14 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 // morgan('combined') is standard apache format log
-app.use(morgan('combined'));
+app.use(morgan('combined',
+  {
+    stream: {
+      // Configure Morgan to use our custom logger with the http severity
+      write: (message) => winston.logger.info(message.trim(), { layer: "http" }),
+    },
+  }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
