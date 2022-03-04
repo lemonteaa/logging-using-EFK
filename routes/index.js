@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const logger = require('../config/winston.js');
+
 /* GET home page. */
 router.get('/', (req, res) => {
   const myJson = {
@@ -11,7 +13,7 @@ router.get('/', (req, res) => {
       },
     },
   };
-  console.log('this is new my json', myJson);
+  logger.log({ message: myJson, level: 'info' });
   res.render('index', { title: 'Express' });
 });
 
