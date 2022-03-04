@@ -1,4 +1,5 @@
 const winston = require('winston');
+const { combine, timestamp, json } = winston.format;
 
 // define the custom settings for each transport (file, console)
 const options = {
@@ -21,6 +22,10 @@ const options = {
 
 // instantiate a new Winston Logger with the settings defined above
 const logger = winston.createLogger({
+  format: combine(timestamp(), json()),
+  defaultMeta: {
+    layer: "app",
+  },
   transports: [
     new winston.transports.File(options.file),
     new winston.transports.Console(options.console),

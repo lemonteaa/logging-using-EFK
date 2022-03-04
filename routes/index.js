@@ -6,14 +6,14 @@ const logger = require('../config/winston.js');
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  const myJson = {
+  /*const myJson = {
     one: {
       two: {
         three: 3,
       },
     },
-  };
-  logger.log({ message: myJson, level: 'info' });
+  };*/
+  logger.info('Render Title page');
   res.render('index', { title: 'Express' });
 });
 
